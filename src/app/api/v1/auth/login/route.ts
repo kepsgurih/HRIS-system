@@ -26,6 +26,6 @@ export async function POST(req: Request) {
         return NextResponse.json({ message: 'Masukan kembali password Anda!' }, { status: 401 });
     }
 
-    const token = jwt.sign({ id: user._id, fullName: user.fullName, status: user.isActive }, process.env.JWT_SECRET || '', { expiresIn: '1h' });
-    return NextResponse.json({ token, type: type === 'admin' ? 'admin' : 'employee' }, { status: 200 });
+    const token = jwt.sign({ id: user._id, fullName: user.fullName, status: user.isActive, type }, process.env.JWT_SECRET || '', { expiresIn: '1h' });
+    return NextResponse.json({ token }, { status: 200 });
 }
